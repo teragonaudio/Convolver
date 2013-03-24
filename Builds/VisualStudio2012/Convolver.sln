@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{7B437441-ED14-A8DE-1B1D-A58295EF5406}") = "Convolver", "Convolver.vcxproj", "{EBE5B2CB-1D10-65DE-D7CB-EE4A0CCE953C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBE5B2CB-1D10-65DE-D7CB-EE4A0CCE953C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EBE5B2CB-1D10-65DE-D7CB-EE4A0CCE953C}.Debug|Win32.Build.0 = Debug|Win32
+		{EBE5B2CB-1D10-65DE-D7CB-EE4A0CCE953C}.Release|Win32.ActiveCfg = Release|Win32
+		{EBE5B2CB-1D10-65DE-D7CB-EE4A0CCE953C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
