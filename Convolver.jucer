@@ -12,13 +12,17 @@
               companyName="Teragon Audio">
   <MAINGROUP id="rzeo0p" name="Convolver">
     <GROUP id="{DB23BCB7-856A-AD37-6AEF-03AB4240EB84}" name="Source">
+      <FILE id="XrWj03" name="ImpulseResponseLoader.cpp" compile="1" resource="0"
+            file="Source/ImpulseResponseLoader.cpp"/>
+      <FILE id="bBSTbg" name="ImpulseResponseLoader.h" compile="0" resource="0"
+            file="Source/ImpulseResponseLoader.h"/>
+      <FILE id="EK5INn" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="ytSxmJ" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="UUrAVC" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="kHg85v" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
-      <FILE id="EK5INn" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="ytSxmJ" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
