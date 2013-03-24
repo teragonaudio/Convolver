@@ -12,6 +12,7 @@
 #define __IMPULSERESPONSELOADER_H_8B889137__
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "FFTWrapper.h"
 #include <vector>
 
 class ImpulseResponseListener {
@@ -24,10 +25,13 @@ public:
 
 class ImpulseResponseLoader {
 public:
-    ImpulseResponseLoader() {}
+    ImpulseResponseLoader(const FFTWrapper* fft) : fftWrapper(fft) {}
     virtual ~ImpulseResponseLoader() {}
 
-    bool loadFile(const File& file, std::vector<AudioSampleBuffer*>& bufferFreq, int bufferSize);
+    bool loadFile(const File& file, std::vector<AudioSampleBuffer*>& bufferFreq, int bufferSize) const;
+
+private:
+    const FFTWrapper* fftWrapper;
 };
 
 #endif  // __IMPULSERESPONSELOADER_H_8B889137__

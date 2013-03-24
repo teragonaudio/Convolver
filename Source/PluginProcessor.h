@@ -14,8 +14,9 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <vector>
 
-#include "PluginParameters.h"
+#include "FFTWrapper.h"
 #include "ImpulseResponseLoader.h"
+#include "PluginParameters.h"
 
 using namespace teragon;
 
@@ -69,6 +70,8 @@ public:
 
 private:
     PluginParameterSet parameters;
+
+    FFTWrapper *fftWrapper;
 
     int convolutionBufferSize;
     std::vector<AudioSampleBuffer*> impulseResponseBuffersFreq;

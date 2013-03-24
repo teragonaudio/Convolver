@@ -21,6 +21,7 @@ ConvolverAudioProcessor::ConvolverAudioProcessor() : AudioProcessor(), ImpulseRe
     convolutionResultBuffersFreq(), convolutionResultBuffersTimeDomain(),
     convolutionResult(2, kMaxBufferSize), convolutionResultTail(2, kMaxBufferSize)
 {
+    fftWrapper = new FFTWrapper(kMaxBufferSize);
 }
 
 ConvolverAudioProcessor::~ConvolverAudioProcessor()
@@ -30,8 +31,7 @@ ConvolverAudioProcessor::~ConvolverAudioProcessor()
 //==============================================================================
 void ConvolverAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    // TODO: Reallocate FFTWrapper
 }
 
 void ConvolverAudioProcessor::releaseResources()
@@ -70,7 +70,7 @@ AudioProcessorEditor* ConvolverAudioProcessor::createEditor()
 
 void ConvolverAudioProcessor::onImpulseResponseSelected(const File& file)
 {
-    ImpulseResponseLoader loader;
+    ImpulseResponseLoader loader(fftWrapper);
     // TODO: Check error
     loader.loadFile(file, impulseResponseBuffersFreq, kMaxBufferSize);
 }

@@ -10,7 +10,7 @@
 
 #include "ImpulseResponseLoader.h"
 
-bool ImpulseResponseLoader::loadFile(const File& file, std::vector<AudioSampleBuffer*>& bufferFreq, int bufferSize)
+bool ImpulseResponseLoader::loadFile(const File& file, std::vector<AudioSampleBuffer*>& bufferFreq, int bufferSize) const
 {
     AudioFormatManager formatManager;
     AudioFormatReader *reader = formatManager.createReaderFor(file);
@@ -26,12 +26,18 @@ bool ImpulseResponseLoader::loadFile(const File& file, std::vector<AudioSampleBu
     bufferFreq.clear();
 
     int currentSample = 0;
+    AudioSampleBuffer *bufferTimeDomain = new AudioSampleBuffer(2, bufferSize);
     while (currentSample <= reader->lengthInSamples) {
-        AudioSampleBuffer *buffer = new AudioSampleBuffer(2, bufferSize);
-        reader->read(buffer, 0, bufferSize, currentSample, true, true);
-        bufferFreq.push_back(buffer);
+        bufferTimeDomain->clear();
+        reader->read(bufferTimeDomain, 0, bufferSize, currentSample, true, true);
+        AudioSampleBuffer *bufferFreqDomain = new AudioSampleBuffer(2, bufferSize);
+        for (int i = 0; i < 2; ++i) {
+            fftWrapper->doFFT(bufferTimeDomain->getSampleData(i), bufferFreqDomain->getSampleData(i));
+        }
+        bufferFreq.push_back(bufferFreqDomain);
         currentSample += bufferSize;
     }
 
+    delete bufferTimeDomain;
     return true;
 }
