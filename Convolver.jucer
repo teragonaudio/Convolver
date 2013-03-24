@@ -12,6 +12,8 @@
               companyName="Teragon Audio">
   <MAINGROUP id="rzeo0p" name="Convolver">
     <GROUP id="{DB23BCB7-856A-AD37-6AEF-03AB4240EB84}" name="Source">
+      <FILE id="KpaO0C" name="FFTWrapper.cpp" compile="1" resource="0" file="Source/FFTWrapper.cpp"/>
+      <FILE id="isBjxi" name="FFTWrapper.h" compile="0" resource="0" file="Source/FFTWrapper.h"/>
       <FILE id="XrWj03" name="ImpulseResponseLoader.cpp" compile="1" resource="0"
             file="Source/ImpulseResponseLoader.cpp"/>
       <FILE id="bBSTbg" name="ImpulseResponseLoader.h" compile="0" resource="0"
