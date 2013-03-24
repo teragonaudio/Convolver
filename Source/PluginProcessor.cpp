@@ -12,8 +12,14 @@
 #include "PluginEditor.h"
 
 
+static const int kMaxBufferSize = 512;
+
 //==============================================================================
-ConvolverAudioProcessor::ConvolverAudioProcessor()
+ConvolverAudioProcessor::ConvolverAudioProcessor() : AudioProcessor(),
+    parameters(), convolutionBufferSize(kMaxBufferSize),
+    impulseResponseBuffersFreq(), inputSignalBufferFreq(2, kMaxBufferSize),
+    convolutionResultBuffersFreq(), convolutionResultBuffersTimeDomain(),
+    convolutionResult(2, kMaxBufferSize), convolutionResultTail(2, kMaxBufferSize)
 {
 }
 
@@ -55,11 +61,6 @@ void ConvolverAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 }
 
 //==============================================================================
-bool ConvolverAudioProcessor::hasEditor() const
-{
-    return true; // (change this to false if you choose to not supply an editor)
-}
-
 AudioProcessorEditor* ConvolverAudioProcessor::createEditor()
 {
     return new ConvolverAudioProcessorEditor (this);

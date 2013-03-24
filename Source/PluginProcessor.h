@@ -18,7 +18,7 @@
 using namespace teragon;
 
 //==============================================================================
-class ConvolverAudioProcessor  : public AudioProcessor
+class ConvolverAudioProcessor : public AudioProcessor
 {
 public:
     //==============================================================================
@@ -33,7 +33,7 @@ public:
 
     //==============================================================================
     AudioProcessorEditor* createEditor();
-    bool hasEditor() const;
+    bool hasEditor() const { return true; }
 
     //==============================================================================
     const String getName() const { return JucePlugin_Name; }
