@@ -15,7 +15,7 @@
 static const int kMaxBufferSize = 512;
 
 //==============================================================================
-ConvolverAudioProcessor::ConvolverAudioProcessor() : AudioProcessor(),
+ConvolverAudioProcessor::ConvolverAudioProcessor() : AudioProcessor(), ImpulseResponseListener(),
     parameters(), convolutionBufferSize(kMaxBufferSize),
     impulseResponseBuffersFreq(), inputSignalBufferFreq(2, kMaxBufferSize),
     convolutionResultBuffersFreq(), convolutionResultBuffersTimeDomain(),
@@ -63,7 +63,16 @@ void ConvolverAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 //==============================================================================
 AudioProcessorEditor* ConvolverAudioProcessor::createEditor()
 {
-    return new ConvolverAudioProcessorEditor (this);
+    ConvolverAudioProcessorEditor *editor = new ConvolverAudioProcessorEditor(this);
+    editor->setOnImpulseResponseSelectedListener(this);
+    return editor;
+}
+
+void ConvolverAudioProcessor::onImpulseResponseSelected(const File& file)
+{
+    ImpulseResponseLoader loader;
+    // TODO: Check error
+    loader.loadFile(file, impulseResponseBuffersFreq, kMaxBufferSize);
 }
 
 //==============================================================================

@@ -99,6 +99,11 @@ void ConvolverAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == loadFileButton)
     {
         //[UserButtonCode_loadFileButton] -- add your button handler code here..
+        FileChooser fileChooser("Select Impulse Response", File::getSpecialLocation(File::userHomeDirectory));
+        if (fileChooser.browseForFileToOpen()) {
+            File impulseResponseFile(fileChooser.getResult());
+            listener->onImpulseResponseSelected(impulseResponseFile);
+        }
         //[/UserButtonCode_loadFileButton]
     }
 

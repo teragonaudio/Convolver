@@ -11,14 +11,16 @@
 #ifndef __PLUGINPROCESSOR_H_C821754D__
 #define __PLUGINPROCESSOR_H_C821754D__
 
-#include <vector>
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <vector>
+
 #include "PluginParameters.h"
+#include "ImpulseResponseLoader.h"
 
 using namespace teragon;
 
 //==============================================================================
-class ConvolverAudioProcessor : public AudioProcessor
+class ConvolverAudioProcessor : public AudioProcessor, public ImpulseResponseListener
 {
 public:
     //==============================================================================
@@ -28,12 +30,7 @@ public:
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock);
     void releaseResources();
-
     void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages);
-
-    //==============================================================================
-    AudioProcessorEditor* createEditor();
-    bool hasEditor() const { return true; }
 
     //==============================================================================
     const String getName() const { return JucePlugin_Name; }
@@ -66,14 +63,18 @@ public:
     void getStateInformation (MemoryBlock& destData);
     void setStateInformation (const void* data, int sizeInBytes);
 
+    bool hasEditor() const { return true; }
+    AudioProcessorEditor* createEditor();
+    void onImpulseResponseSelected(const File& file);
+
 private:
     PluginParameterSet parameters;
 
     int convolutionBufferSize;
-    std::vector<AudioSampleBuffer> impulseResponseBuffersFreq;
+    std::vector<AudioSampleBuffer*> impulseResponseBuffersFreq;
     AudioSampleBuffer inputSignalBufferFreq;
-    std::vector<AudioSampleBuffer> convolutionResultBuffersFreq;
-    std::vector<AudioSampleBuffer> convolutionResultBuffersTimeDomain;
+    std::vector<AudioSampleBuffer*> convolutionResultBuffersFreq;
+    std::vector<AudioSampleBuffer*> convolutionResultBuffersTimeDomain;
     AudioSampleBuffer convolutionResult;
     AudioSampleBuffer convolutionResultTail;
 

@@ -25,6 +25,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "ImpulseResponseLoader.h"
 //[/Headers]
 
 
@@ -47,6 +48,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void setOnImpulseResponseSelectedListener(ImpulseResponseListener *value) { listener = value; }
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -57,6 +59,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    ImpulseResponseListener *listener;
     //[/UserVariables]
 
     //==============================================================================
