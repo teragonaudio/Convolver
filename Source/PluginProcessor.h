@@ -11,6 +11,7 @@
 #ifndef __PLUGINPROCESSOR_H_C821754D__
 #define __PLUGINPROCESSOR_H_C821754D__
 
+#include <vector>
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginParameters.h"
 
@@ -67,6 +68,14 @@ public:
 
 private:
     PluginParameterSet parameters;
+
+    int convolutionBufferSize;
+    std::vector<AudioSampleBuffer> impulseResponseBuffersFreq;
+    AudioSampleBuffer inputSignalBufferFreq;
+    std::vector<AudioSampleBuffer> convolutionResultBuffersFreq;
+    std::vector<AudioSampleBuffer> convolutionResultBuffersTimeDomain;
+    AudioSampleBuffer convolutionResult;
+    AudioSampleBuffer convolutionResultTail;
 
 private:
     //==============================================================================
